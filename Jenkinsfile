@@ -25,6 +25,16 @@ pipeline {
         }
       }
     }
+    stage('package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
+    stage('art') {
+      steps {
+        archiveArtifacts 'target/*.jar'
+      }
+    }
   }
   post {
     always {
